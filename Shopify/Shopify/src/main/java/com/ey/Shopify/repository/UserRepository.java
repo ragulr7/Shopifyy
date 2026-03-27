@@ -1,4 +1,8 @@
 package com.ey.Shopify.repository;
 
-public interface UserRepository {
+import com.ey.Shopify.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
 }
+
