@@ -10,7 +10,6 @@ export default function CartPage() {
     pincode: ""
   });
 
-
   const fetchCart = () => {
     fetch("http://localhost:8080/api/cart")
       .then((res) => res.json())
@@ -23,42 +22,60 @@ export default function CartPage() {
 
   const removeItem = async (id) => {
     await fetch(`http://localhost:8080/api/cart/${id}`, {
-      method: "DELETE",
+      method: "DELETE"
     });
     fetchCart();
   };
 
-
+ 
   const updateQty = async (id, qty) => {
     if (qty < 1) return;
+
     await fetch(`http://localhost:8080/api/cart/${id}/${qty}`, {
-      method: "PUT",
+      method: "PUT"
     });
+
     fetchCart();
   };
 
   const clearCart = async () => {
     await fetch("http://localhost:8080/api/cart/clear", {
-      method: "DELETE",
+      method: "DELETE"
     });
     fetchCart();
   };
 
-  const placeOrder = () => {
+  const placeOrder = async () => {
     if (!address.name || !address.phone || !address.location || !address.pincode) {
       alert("Please fill all address fields!");
       return;
     }
+    await fetch("http://localhost:8080/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName: address.name,
+        phone: address.phone,
+        location: address.location,
+        pincode: address.pincode
+      })
+    });
 
-    const orderData = {
-      items: cart,
-      total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
-      deliveryAddress: address,
-    };
+    
+    await fetch("http://localhost:8080/api/cart/clear", {
+      method: "DELETE"
+    });
 
-    console.log("Order Placed:", orderData);
+    setAddress({
+      name: "",
+      phone: "",
+      location: "",
+      pincode: ""
+    });
 
     alert("Order placed successfully!");
+
+    window.location.reload();
   };
 
   return (
@@ -73,11 +90,12 @@ export default function CartPage() {
       <div className="space-y-4">
         {cart.map((item) => (
           <div key={item.id} className="flex items-center gap-4 border p-4 rounded-md">
-            <img 
+            <img
               src={item.image}
               alt={item.name}
               className="w-24 h-24 object-contain bg-white p-2 rounded"
             />
+
             <div className="flex-1">
               <h2 className="font-semibold text-lg">{item.name}</h2>
               <p className="text-indigo-600 font-bold text-xl">₹{item.price}</p>
@@ -91,6 +109,7 @@ export default function CartPage() {
                 </button>
 
                 <span className="text-lg font-semibold">{item.quantity}</span>
+
                 <button
                   className="px-3 py-1 bg-gray-200 font-bold"
                   onClick={() => updateQty(item.id, item.quantity + 1)}
@@ -110,7 +129,6 @@ export default function CartPage() {
         ))}
       </div>
 
-      
       {cart.length > 0 && (
         <div className="mt-6 flex justify-center">
           <button
@@ -121,21 +139,20 @@ export default function CartPage() {
           </button>
         </div>
       )}
-
+                                                                                                                                                                                            
       {cart.length > 0 && (
         <div className="mt-6">
-          
           <div className="text-center mb-4">
             <p className="text-2xl font-bold">
               Total: ₹{cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}
             </p>
           </div>
 
-          
           <div className="max-w-md mx-auto border p-4 rounded-md shadow-sm bg-white">
             <h2 className="text-xl font-bold mb-3 text-center">Delivery Address</h2>
 
             <div className="flex flex-col gap-3">
+
               <input
                 type="text"
                 placeholder="Full Name"
@@ -143,6 +160,7 @@ export default function CartPage() {
                 value={address.name}
                 onChange={(e) => setAddress({ ...address, name: e.target.value })}
               />
+
               <input
                 type="text"
                 placeholder="Phone Number"
@@ -172,6 +190,7 @@ export default function CartPage() {
               >
                 Place Order
               </button>
+
             </div>
           </div>
         </div>

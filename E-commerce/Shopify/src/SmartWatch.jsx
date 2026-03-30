@@ -28,6 +28,7 @@ export default function Mobile() {
   });
 
   alert(`${product.name} added to cart!`);
+  window.location.href = "/cart";
 };
 
   
