@@ -26,16 +26,19 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartItem> getCartItems() {
+
         return repo.findAll();
     }
 
     @Override
     public void removeItem(Long id) {
+
         repo.deleteById(id);
     }
 
     @Override
     public void clearCart() {
+
         repo.deleteAll();
     }
 

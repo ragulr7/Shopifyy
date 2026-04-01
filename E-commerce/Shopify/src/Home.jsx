@@ -48,7 +48,6 @@ function Home() {
 
     return () => clearInterval(intervalId);
   }, []);
-
   const all = category; 
 
   return (
@@ -61,12 +60,10 @@ function Home() {
           <a href="/" className="hover:underline">Home</a>
           <a href="aboutus" className="hover:underline">About Us</a>
 
-          
           <div className="relative group">
             <span className="cursor-pointer inline-flex items-center gap-1 hover:underline">
-              Products ▾
+              Products ▾ 
             </span>
-
             <div className="
               absolute left-1/2 -translate-x-1/2 top-full mt-2 w-40
               rounded-md border border-gray-200 bg-white shadow-md z-50
@@ -112,7 +109,6 @@ function Home() {
           </div>
         ))}
       </div>
-
       <div className="w-full bg-black flex justify-center items-center py-10">
         <div className="w-[92%] sm:w-11/12 md:w-5/6 lg:w-3/4">
           <img
@@ -132,5 +128,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

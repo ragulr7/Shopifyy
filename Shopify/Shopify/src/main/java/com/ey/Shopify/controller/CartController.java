@@ -19,10 +19,12 @@ public class CartController {
 
     @PostMapping
     public CartItem addToCart(@RequestBody CartItem item) {
+
         return service.addToCart(item);
     }
     @GetMapping
     public List<CartItem> getCartItems() {
+
         return service.getCartItems();
     }
     @DeleteMapping("/{id}")
