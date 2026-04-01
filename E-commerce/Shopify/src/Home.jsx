@@ -63,7 +63,7 @@ function Home() {
           <div className="relative group">
             <span className="cursor-pointer inline-flex items-center gap-1 hover:underline">
               Products ▾ 
-            </span>
+            </span> 
             <div className="
               absolute left-1/2 -translate-x-1/2 top-full mt-2 w-40
               rounded-md border border-gray-200 bg-white shadow-md z-50
