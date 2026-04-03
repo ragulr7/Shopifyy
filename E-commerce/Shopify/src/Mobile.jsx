@@ -45,7 +45,6 @@ export default function Mobile() {
  
   return (
     <div className="min-h-screen py-6">
-      
       <div className="mx-auto w-[92%] sm:w-11/12 md:w-5/6 lg:w-3/4">
         <h1 className="text-2xl sm:text-3xl font-bold">Mobiles</h1>
         <p className="text-gray-600 mt-1">Best Price!</p>

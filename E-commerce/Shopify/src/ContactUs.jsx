@@ -165,7 +165,7 @@ function ContactUs() {
             <button
               type="submit"
               className="mx-auto block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded border border-blue-200 shadow-sm"
-            >
+            onClick={() => alert("Message sent!")}>
               SUBMIT
             </button>
           </form>

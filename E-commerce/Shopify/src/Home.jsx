@@ -76,18 +76,17 @@ function Home() {
                   key={index}
                   className="py-2 px-3 hover:bg-gray-100 cursor-pointer"
                   onClick={() => navigate(item.path)}
-                >
+                > 
                   {item.name}
                 </p>
               ))}
             </div>
           </div>
-
           <a href="contactus" className="hover:underline">Contact Us</a>
           <a href="cart" className="hover:underline">Cart</a>
         </div>
       </div>
-      <div
+      <div 
         className="
           flex gap-6 mt-6 px-4 
           overflow-x-auto whitespace-nowrap 

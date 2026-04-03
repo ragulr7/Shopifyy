@@ -14,7 +14,7 @@ export default function CartPage() {
     fetch("http://localhost:8080/api/cart")
       .then((res) => res.json())
       .then((data) => setCart(data));
-  };
+  };                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 
   useEffect(() => {
     fetchCart();
@@ -23,11 +23,9 @@ export default function CartPage() {
   const removeItem = async (id) => {
     await fetch(`http://localhost:8080/api/cart/${id}`, {
       method: "DELETE"
-    });
+    }); 
     fetchCart();
   };
-
- 
   const updateQty = async (id, qty) => {
     if (qty < 1) return;
 
@@ -61,7 +59,6 @@ export default function CartPage() {
       })
     });
 
-    
     await fetch("http://localhost:8080/api/cart/clear", {
       method: "DELETE"
     });
@@ -95,7 +92,6 @@ export default function CartPage() {
               alt={item.name}
               className="w-24 h-24 object-contain bg-white p-2 rounded"
             />
-
             <div className="flex-1">
               <h2 className="font-semibold text-lg">{item.name}</h2>
               <p className="text-indigo-600 font-bold text-xl">₹{item.price}</p>
@@ -109,7 +105,6 @@ export default function CartPage() {
                 </button>
 
                 <span className="text-lg font-semibold">{item.quantity}</span>
-
                 <button
                   className="px-3 py-1 bg-gray-200 font-bold"
                   onClick={() => updateQty(item.id, item.quantity + 1)}
